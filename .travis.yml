@@ -14,10 +14,10 @@ after_success:
   - docker build -t paakcmd/multi-server ./server
   - docker build -t paakcmd/multi-worker ./worker
 
-#Login to the docker CLI
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-# Take those images and push them to docker hub
--docker push paakcmd/multi-client
--docker push paakcmd/multi-nginx
--docker push paakcmd/multi-server
--docker push paakcmd/multi-worker
+  #Login to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  -docker push paakcmd/multi-client
+  -docker push paakcmd/multi-nginx
+  -docker push paakcmd/multi-server
+  -docker push paakcmd/multi-worker
