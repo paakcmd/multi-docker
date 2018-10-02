@@ -3,21 +3,22 @@ services:
   - docker
 
 before_install:
-  -docker build -t paakcmd/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t paakcmd/react-test -f./client/Dockerfile.dev ./client
 
 script:
   - docker run paakcmd/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t paakcmd/multi-client ./client
-  - docker build -t paakcmd/multi-nginx ./nginx
-  - docker build -t paakcmd/multi-server ./server
-  - docker build -t paakcmd/multi-worker ./worker
+  - docker build -t andropovbr/multi-client ./client
+  - docker build -t andropovbr/multi-nginx ./nginx
+  - docker build -t andropovbr/multi-server ./server
+  - docker build -t andropovbr/multi-worker ./worker
 
-  #Login to the docker CLI
+  # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # Take those images and push them to docker hub
-  -docker push paakcmd/multi-client
-  -docker push paakcmd/multi-nginx
-  -docker push paakcmd/multi-server
-  -docker push paakcmd/multi-worker
+
+  # take those images and push them to docker hub
+  - docker push andropovbr/multi-client
+  - docker push andropovbr/multi-nginx
+  - docker push andropovbr/multi-server
+  - docker push andropovbr/multi-worker
